@@ -1,6 +1,5 @@
 impl Solution {
     pub fn judge_circle(moves: String) -> bool {
-        let mut moves_str = moves.clone();
         let mut starting_point = (0, 0);
         for direction in moves.chars() {
             match direction {
@@ -10,7 +9,6 @@ impl Solution {
                 'D' => starting_point.1 -=1,
                 _ => (),
             }
-            moves_str.remove(0);
         }
         return starting_point == (0, 0)
     }
