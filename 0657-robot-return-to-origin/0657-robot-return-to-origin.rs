@@ -12,6 +12,6 @@ impl Solution {
             }
             moves_str.remove(0);
         }
-        return starting_point.0 == 0 && starting_point.1 == 0
+        return starting_point == (0, 0)
     }
 }
