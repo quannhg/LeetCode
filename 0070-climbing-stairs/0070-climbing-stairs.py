@@ -5,7 +5,6 @@ class Solution:
         prev, curr = 1, 1
         for i in range(2, n+1):
             temp = curr
-            curr = curr + prev
+            curr = prev + curr
             prev = temp
         return curr
-        
