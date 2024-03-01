@@ -9,7 +9,7 @@ class Solution:
         info = [] #[[sum_of_level, num_node]]
         def dfs(node, depth=0):
             if node:
-                if len(info) <= depth:
+                if len(info) == depth:
                     info.append([0,0])
                 info[depth][0] += node.val
                 info[depth][1] += 1
