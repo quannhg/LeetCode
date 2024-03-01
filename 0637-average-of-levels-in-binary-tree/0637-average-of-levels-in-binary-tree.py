@@ -6,15 +6,17 @@
 #         self.right = right
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
-        info = [] #[[sum_of_level, num_node]]
-        def dfs(node, depth=0):
-            if node:
-                if len(info) == depth:
-                    info.append([0,0])
-                info[depth][0] += node.val
-                info[depth][1] += 1
-                dfs(node.left, depth + 1)
-                dfs(node.right, depth + 1)
-        dfs(root)
-        return [sum_of_level/float(num_node) for (sum_of_level, num_node) in info]
+        averages = []
+        current_level = [root]
+        while any(current_level):
+            current_sum, current_node_amount, next_level = 0, 0, []
+            for node in current_level:
+                current_sum += node.val
+                current_node_amount +=1
+                if node.left: next_level.append(node.left)
+                if node.right: next_level.append(node.right)
+            averages.append(current_sum / float(current_node_amount))
+            current_level = next_level
+        return averages
+            
         
