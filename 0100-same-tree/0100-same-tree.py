@@ -6,7 +6,4 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p, q):
-        def t(n):
-            return n and (n.val, t(n.left), t(n.right))
-        return t(p) == t(q)
-        
+        return p and q and p.val == q.val and all(map(self.isSameTree, (p.left, p.right), (q.left, q.right))) or p is q
