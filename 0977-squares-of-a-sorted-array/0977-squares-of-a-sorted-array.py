@@ -1,19 +1,18 @@
 class Solution:
-    def sortedSquares(self, A: List[int]) -> List[int]:
-        return_array = [0] * len(A)
-        write_pointer = len(A) - 1
-        left_read_pointer = 0
-        right_read_pointer = len(A) - 1
-        left_square = A[left_read_pointer] ** 2
-        right_square = A[right_read_pointer] ** 2
-        while write_pointer >= 0:
-            if left_square > right_square:
-                return_array[write_pointer] = left_square
-                left_read_pointer += 1
-                left_square = A[left_read_pointer] ** 2
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        firstPointer, lastPointer, writePointer = 0, len(nums) -1, len(nums) - 1
+        result = [0] * len(nums)
+        while firstPointer < lastPointer:
+            if abs(nums[firstPointer]) >= (nums[lastPointer]):
+                result[writePointer] = nums[firstPointer] ** 2
+                firstPointer += 1
+                writePointer -= 1
             else:
-                return_array[write_pointer] = right_square
-                right_read_pointer -= 1
-                right_square = A[right_read_pointer] ** 2
-            write_pointer -= 1
-        return return_array
+                result[writePointer] = nums[lastPointer] ** 2
+                lastPointer -= 1
+                writePointer -= 1
+        result[0] = nums[firstPointer] ** 2
+        
+        return result
+        
+        
