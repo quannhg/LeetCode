@@ -3,10 +3,7 @@ class Solution:
         def backspacePointer(pointer, string):
             skip = 0
             while pointer >= 0 and (string[pointer] == '#' or skip > 0):
-                if string[pointer] == '#':
-                    skip += 1
-                else:
-                    skip -= 1
+                skip += 1 if string[pointer] == '#' else -1
                 pointer -= 1
             return pointer
 
