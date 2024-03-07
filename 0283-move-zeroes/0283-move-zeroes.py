@@ -3,19 +3,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        left_pointer, right_pointer = 0, len(nums)-1
-        
-        def moveZeroToTail():
-            nonlocal left_pointer, right_pointer
-            for i in range(left_pointer, right_pointer):
-                nums[i] = nums[i+1]
-            nums[right_pointer] = 0
-            right_pointer -= 1
+        snowball_size = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                snowball_size +=1
+            elif snowball_size > 0:
+                nums[i], nums[i-snowball_size] = 0, nums[i]
+                
             
-        while(left_pointer<right_pointer):
-            if(nums[left_pointer] == 0):
-                moveZeroToTail()
-            else:
-                left_pointer += 1
                 
         
