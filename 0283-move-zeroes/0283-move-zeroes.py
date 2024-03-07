@@ -3,12 +3,11 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        snowball_size = 0
-        for i in range(len(nums)):
-            if nums[i] == 0:
-                snowball_size +=1
-            elif snowball_size > 0:
-                nums[i], nums[i-snowball_size] = 0, nums[i]
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != 0 and nums[slow] == 0:
+                nums[fast], nums[slow] = 0, nums[fast]
+            if nums[slow] != 0 : slow += 1
                 
             
                 
