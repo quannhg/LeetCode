@@ -8,14 +8,14 @@ class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         if not root:
             return []
-        res, stack = [], [(root, "")]
-        while stack:
-            node, left_str = stack.pop()
+        res, queue = [], deque([(root, "")])
+        while queue:
+            node, ls = queue.popleft()
             if not node.left and not node.right:
-                res.append(left_str + str(node.val))
-            if node.right:
-                stack.append((node.right, left_str + str(node.val) + "->"))
+                res.append(ls + str(node.val))
             if node.left:
-                stack.append((node.left, left_str + str(node.val) + "->"))
+                queue.append((node.left, ls + str(node.val) + "->"))
+            if node.right:
+                queue.append((node.right, ls + str(node.val) + "->"))
         return res
                 
