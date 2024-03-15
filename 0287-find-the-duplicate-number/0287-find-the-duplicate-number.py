@@ -1,5 +1,6 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
+        # see value index as f(value) = index => linked list with circle
         slow = nums[0]
         fast = nums[nums[0]]
         while slow != fast:
