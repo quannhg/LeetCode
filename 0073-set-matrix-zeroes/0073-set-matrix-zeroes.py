@@ -3,7 +3,8 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        col_0 = False;
+        # put the infomation of row, col 0 to the first element of row and col        
+        col_0 = False; # extra constant memory for col to avoid overlap at [0][0]
         for row_idx, row in enumerate(matrix):
             for col_idx, num in enumerate(row):
                 if num == 0:
@@ -12,6 +13,7 @@ class Solution:
                         col_0 = True;
                     else:
                         matrix[0][col_idx] = 0 
+                        
         # hanle col 0 affer handler row
         for col_idx in range(1, len(matrix[0])):
             if matrix[0][col_idx] == 0:
