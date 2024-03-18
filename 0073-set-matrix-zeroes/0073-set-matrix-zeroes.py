@@ -3,17 +3,27 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        zero_row = set()
-        zero_col = set()
+        col_0 = False;
         for row_idx, row in enumerate(matrix):
             for col_idx, num in enumerate(row):
                 if num == 0:
-                    zero_row.add(row_idx)
-                    zero_col.add(col_idx)
-        for row_idx in zero_row:
-            for col_idx in range(len(matrix[row_idx])):
-                matrix[row_idx][col_idx] = 0
-        for col_idx in zero_col:
-            for row_idx in range(len(matrix)):
-                matrix[row_idx][col_idx] = 0
+                    matrix[row_idx][0] = 0
+                    if col_idx == 0:
+                        col_0 = True;
+                    else:
+                        matrix[0][col_idx] = 0 
+        # hanle col 0 affer handler row
+        for col_idx in range(1, len(matrix[0])):
+            if matrix[0][col_idx] == 0:
+                for row_idx in range(1, len(matrix)):
+                    matrix[row_idx][col_idx] = 0
+        for row_idx in range(len(matrix)):
+            if matrix[row_idx][0] == 0:
+                for col_idx in range(1, len(matrix[0])):
+                    matrix[row_idx][col_idx] = 0
         
+        # hanle col 0
+        if col_0:
+            for row_idx in range(len(matrix)):
+                matrix[row_idx][0] = 0
+            
