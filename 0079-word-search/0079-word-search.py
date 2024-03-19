@@ -7,19 +7,19 @@ class Solution:
         
         board[row_idx][col_idx] = ""
         
-        if (row_idx - 1 >= 0) and len(board[row_idx - 1][col_idx]) > 0:
+        if (row_idx - 1 >= 0) and len(board[row_idx - 1][col_idx]) == 1:
             if self.travel(board, word[1:], row_idx - 1, col_idx):
                 return True
             
-        if (row_idx + 1 < len(board)) and len(board[row_idx + 1][col_idx]) > 0:
+        if (row_idx + 1 < len(board)) and len(board[row_idx + 1][col_idx]) == 1:
             if self.travel(board, word[1:], row_idx + 1, col_idx):
                 return True
             
-        if (col_idx - 1 >= 0) and len(board[row_idx][col_idx - 1]) > 0:
+        if (col_idx - 1 >= 0) and len(board[row_idx][col_idx - 1]) == 1:
             if self.travel(board, word[1:], row_idx, col_idx - 1):
                 return True
             
-        if (col_idx + 1 < len(board[0])) and len(board[row_idx][col_idx + 1]) > 0:
+        if (col_idx + 1 < len(board[0])) and len(board[row_idx][col_idx + 1]) == 1:
             if self.travel(board, word[1:], row_idx, col_idx + 1):
                 return True
         
