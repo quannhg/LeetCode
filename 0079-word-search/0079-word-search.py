@@ -1,34 +1,9 @@
 class Solution:
-    def travel(self, board: List[List[str]], word: str, row_idx: int, col_idx: int) -> bool:
-        if board[row_idx][col_idx] != word[0]:
-            return False
-        if len(word) == 1:
-            return True
-        
-        board[row_idx][col_idx] = ""
-        
-        if (row_idx - 1 >= 0) and len(board[row_idx - 1][col_idx]) == 1:
-            if self.travel(board, word[1:], row_idx - 1, col_idx):
-                return True
-            
-        if (row_idx + 1 < len(board)) and len(board[row_idx + 1][col_idx]) == 1:
-            if self.travel(board, word[1:], row_idx + 1, col_idx):
-                return True
-            
-        if (col_idx - 1 >= 0) and len(board[row_idx][col_idx - 1]) == 1:
-            if self.travel(board, word[1:], row_idx, col_idx - 1):
-                return True
-            
-        if (col_idx + 1 < len(board[0])) and len(board[row_idx][col_idx + 1]) == 1:
-            if self.travel(board, word[1:], row_idx, col_idx + 1):
-                return True
-        
-        board[row_idx][col_idx] = word[0]
-        return False
-    
     def exist(self, board: List[List[str]], word: str) -> bool:
-        for row_idx in range(len(board)):
-            for col_idx in range(len(board[row_idx])):
-                if self.travel(board, word, row_idx, col_idx):
-                    return True
-        return False
+        row_len, col_len = len(board), len(board[0])
+        def match(idx, row, col, visited_cell):
+            if (row, col) in visited_cell: return False
+            if not ( 0 <= row < row_len and 0 <= col < col_len) : return False
+            if idx == 0: return board[row][col] == word[idx]
+            return board[row][col] == word[idx] and any(match(idx - 1, *cell_idx, visited_cell | {(row, col)}) for cell_idx in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)])
+        return any(match(len(word) - 1, row, col, set()) for col in range(col_len) for row in range(row_len))
