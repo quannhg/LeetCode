@@ -3,7 +3,7 @@ class Solution:
         if not nums1 or not nums2:
             return []
         
-        min_heap, visited_pairs, smallest_pairs = [], set(), []
+        min_heap, visited_pairs, smallest_pairs = [], set(), [] # using set instead of array increase pretty much performance
         
         heappush(min_heap, (nums1[0] + nums2[0], 0, 0)) # (sum, idx_1, idx_2)
         visited_pairs.add((0,0)) # (idx_1, idx_2)
