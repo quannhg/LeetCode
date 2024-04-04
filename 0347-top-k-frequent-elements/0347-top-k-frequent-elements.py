@@ -7,11 +7,5 @@ class Solution:
         for num, frequent in nums_count.items():
             frequent_buckets[frequent].append(num)
         
-        top_k_frequent = []
-        for bucket in frequent_buckets[::-1]:
-            top_k_frequent += bucket
-            if len(top_k_frequent) >= k:
-                break
-                
-        return top_k_frequent
+        return [num for bucket in frequent_buckets[::-1] for num in bucket][:k]
         
