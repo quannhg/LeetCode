@@ -2,11 +2,16 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         nums_count = Counter(nums)
         
-        top_k = []
-        for num, frequent in nums_count.items():
-            if len(top_k) == k:
-                heappushpop(top_k, (frequent, num))
-            else:
-                heappush(top_k, (frequent, num))
+        frequent_buckets = [[] for _ in range(len(nums) + 1)]
         
-        return [num for _, num in top_k]
+        for num, frequent in nums_count.items():
+            frequent_buckets[frequent].append(num)
+        
+        top_k_frequent = []
+        for bucket in frequent_buckets[::-1]:
+            top_k_frequent += bucket
+            if len(top_k_frequent) >= k:
+                break
+                
+        return top_k_frequent
+        
