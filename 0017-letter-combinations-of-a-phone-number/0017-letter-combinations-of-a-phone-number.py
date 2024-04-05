@@ -12,12 +12,12 @@ class Solution:
         }
         return mapping_of_digits[num]
     
-    def addNewLetter(self, digits:str, result: str):
+    def addNewLetter(self, digits:str, combination: str):
         if len(digits) == 0:
-            return [result]
+            return [combination]
         else:
-            letter_combinations = map(lambda new_letter: result + new_letter, self.lettersOfNum(digits[0]))
-        return reduce(lambda acc, new_combination: acc + self.addNewLetter(digits[1:], new_combination), letter_combinations, [])
+            letter_combinations = map(lambda new_letter: combination + new_letter, self.lettersOfNum(digits[0]))
+        return reduce(lambda combination_list, new_combination: combination_list + self.addNewLetter(digits[1:], new_combination), letter_combinations, [])
         
     
     def letterCombinations(self, digits: str) -> List[str]:
