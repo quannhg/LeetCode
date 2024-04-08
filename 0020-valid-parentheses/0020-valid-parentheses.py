@@ -7,7 +7,7 @@ class Solution:
             "}" : "{"
         }
         for bracket in s:
-            if bracket in "([{":
+            if bracket in matching_brackets.values():
                 brackets_stack.append(bracket)
             else:
                 if not brackets_stack or brackets_stack.pop() != matching_brackets[bracket]:
