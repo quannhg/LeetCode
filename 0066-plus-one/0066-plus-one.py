@@ -7,4 +7,3 @@ class Solution:
             digits[index] = 0
     
         return [1] + digits
-                
