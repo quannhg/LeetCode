@@ -5,8 +5,6 @@ class Solution:
                 digits[index] += 1
                 return digits
             digits[index] = 0
-        
-        digits = [0] * (len(digits) + 1)
-        digits[0] = 1
-        return digits
+    
+        return [1] + digits
                 
