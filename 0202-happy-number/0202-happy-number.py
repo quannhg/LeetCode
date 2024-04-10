@@ -1,17 +1,20 @@
 class Solution:
+    def sumSquareDigits(self, n: int) -> int:
+        square_sum = 0
+        while n != 0:
+            digit = n % 10
+            square_sum += digit * digit
+            n //= 10
+        return square_sum
+
     def isHappy(self, n: int) -> bool:
-        square_digits_set = set()
+        slow = fast = n
+
         while True:
-            square_sum = 0
-            while n != 0:
-                remain = n % 10
-                square_sum += remain ** 2
-                n //= 10 
-            if square_sum == 1:
+            slow = self.sumSquareDigits(slow)
+            fast = self.sumSquareDigits(fast)
+            fast = self.sumSquareDigits(fast)
+            if fast == 1 or slow == 1: 
                 return True
-            if square_sum in square_digits_set:
+            if fast == slow:
                 return False
-            else:
-                square_digits_set.add(square_sum)
-                n = square_sum
-                
